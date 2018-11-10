@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val initialTextViewTranslationY = textView.translationY
+        setTimeToText()
 
         seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -35,6 +38,11 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener { v ->
             seekBar.progress = 0
+            setTimeToText()
         }
+    }
+
+    fun setTimeToText() {
+        textViewTime.text = SimpleDateFormat("yyyy-M-dd hh:mm:ss").format(Date())
     }
 }
